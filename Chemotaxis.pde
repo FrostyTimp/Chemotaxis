@@ -1,8 +1,9 @@
 Bacteria [] dot;
+Food feed;
  void setup()   
  {     
  	size(800,800);
- 	dot=new Bacteria[10];
+ 	dot=new Bacteria[250];
  	for(int i=0;i<dot.length;i++)
  	{
  		dot[i]=new Bacteria((int)(Math.random()*780)+10,(int)(Math.random()*780)+10);
@@ -17,7 +18,34 @@ Bacteria [] dot;
  		dot[i].walk();
  		dot[i].show();
  	}
+ 	if(mousePressed==true)
+ 	{
+ 		feed=new Food(mouseX,mouseY);
+ 		feed.show();
+ 	}
+ 	// feed.show();
  }  
+ // void mouseClicked()
+ // {
+ // 	feed=new Food(mouseX,mouseY);
+ // 	feed.show();
+ // }
+ class Food
+ {
+ 	int foodX,foodY;
+ 	Food(int placeX, int placeY)
+ 	{
+ 		show();
+ 		foodX=placeX;
+ 		foodY=placeY;
+ 	}
+ 	void show()
+ 	{
+ 		stroke(255);
+ 		fill(255);
+ 		ellipse(foodX,foodY,30,30);
+ 	}
+ }
  class Bacteria    
  {     
  	int myX,myY,r,g,b;
@@ -39,7 +67,22 @@ Bacteria [] dot;
  	}
  	void walk()
  	{
- 			myX=myX+(int)(Math.random()*3)-1;
- 			myY=myY+(int)(Math.random()*3)-1;
+ 			if(mouseX<myX)
+ 			{
+ 				myX=myX+(int)(Math.random()*4)-2;
+ 			}
+ 			else 
+ 			{
+ 				myX=myX+(int)(Math.random()*4)-1;
+ 			}
+ 			if(mouseY<myY)
+ 			{
+ 				myY=myY+(int)(Math.random()*4)-2;
+ 			}
+ 			else
+ 			{
+ 				myY=myY+(int)(Math.random()*4)-1;
+ 			}
+
  	}
  }    
